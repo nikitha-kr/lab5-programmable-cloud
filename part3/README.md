@@ -11,6 +11,8 @@ trying to create services that manage your cloud environment when you're not aro
 The write up for the `google.auth` library above explains service accounts,
 and there's also a writeup [the google cloud documentation](https://cloud.google.com/iam/docs/understanding-service-accounts).
 
+Follow the steps below to create a service account and then save the resulting JSON credentials into a file
+called `service-credentials.json`.
 
 ## Creating your service account
 
