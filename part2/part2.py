@@ -18,4 +18,6 @@ def list_instances(compute, project, zone):
     result = compute.instances().list(project=project, zone=zone).execute()
     return result['items'] if 'items' in result else None
 
-print("Your available instances are", list_instances(service, project, 'us-west1-b'))
+print("Your available instances are:")
+for instance in ist_instances(service, project, 'us-west1-b')):
+    print(instance['name'])
