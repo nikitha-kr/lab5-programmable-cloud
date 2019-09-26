@@ -27,11 +27,13 @@ gcloud compute images list | grep -i ubuntu
 To install the example flask application, you will need to install `python3` and `python3-pip`. Something like this should work:
 ```
 sudo apt-get update
-sudo apt-get install -y python3 python3-pip
+sudo apt-get install -y python3 python3-pip git
+git clone https://github.com/pallets/flask
 cd ~/flask/examples/tutorial
 sudo python3 setup.py install
+sudo pip3 install -e .
 ```
-should build the software. To then run the application, you should specify:
+should build and install the software. To then run the application, you should specify:
 ```
 export FLASK_APP=flaskr
 flask init-db
