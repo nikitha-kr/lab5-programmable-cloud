@@ -6,14 +6,18 @@ import time
 from pprint import pprint
 
 import googleapiclient.discovery
-from oauth2client.client import GoogleCredentials
-from six.moves import input
+import google.auth
 
-credentials = GoogleCredentials.get_application_default()
+credentials, project = google.auth.default()
 service = googleapiclient.discovery.build('compute', 'v1', credentials=credentials)
 
 #
-# In the google cloud console, the environment variable GOOGLE_CLOUD_PROJECT
-# is automatically set
+# Stub code - just lists all instances
 #
-project = os.getenv('GOOGLE_CLOUD_PROJECT') or 'YOUR-PROJECT-NAME-HERE'  # TODO: Update placeholder value.
+def list_instances(compute, project, zone):
+    result = compute.instances().list(project=project, zone=zone).execute()
+    return result['items'] if 'items' in result else None
+
+print("Your running instances are:")
+for instance in list_instances(service, project, 'us-west1-b'):
+    print(instance['name'])
