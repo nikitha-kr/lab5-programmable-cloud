@@ -1,4 +1,4 @@
-## Part One - Program to Create a VM and install an Application
+# Part One - Program to Create a VM and install an Application
 
 In this part, you're going to write a simple program to create a VM install the [flask tutorial application](https://github.com/pallets/flask/tree/master/examples/tutorial). In later labs, we'll be using [Flask](https://palletsprojects.com/p/flask/) to write a simple REST interface.
 
@@ -39,4 +39,12 @@ nohup flask run -h 0.0.0.0 &
 ```
 This last line starts the `flask` application and `nohup` insures that it continues to run after the `startup_script.sh` finishes execution.
 
-### Recommendations
+## Recommendations
+
+You should first perform each step manually using the google console.
+
+If you're uncertain how to configure a certain option (e.g. a network tag or somesuch), you can configure it using the GUI and then run
+```
+gcloud compute instances list --format=json
+```
+to get a complete dump of the instance configuration details. This can help you narrow down what part of the API documentation to consult or determine valid values.
