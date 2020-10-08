@@ -13,7 +13,7 @@ You should [clone the programming tutorial from github](https://github.com/Googl
 The tutorial goes through the steps of creating an instance. That instance is created using a `debian-9` image. As part of the startup code for that image, the `startup_script` shell script is executed; that script retrieves an image (specified by the program), modifies it and places it in a Google storage `bucket`.
 
 Our program will be similar:
-* You will create an image (the `f1-micro` image is "free") in the "us-west-1b" [zone](https://cloud.google.com/compute/docs/regions-zones/).
+* You will create an image (the `f1-micro` image is "free") in the "us-west1-b" [zone](https://cloud.google.com/compute/docs/regions-zones/).
 * You should use the `ubuntu-1804-lts` images from the `ubuntu-os-cloud` "family" of public images. This will start with a "Bionic Beaver" release. You can determine the avaialable versions using
 ```
 gcloud compute images list | grep -i ubuntu
