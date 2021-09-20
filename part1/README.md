@@ -1,6 +1,6 @@
 # Part One - Program to Create a VM and install an Application
 
-In this part, you're going to write a simple program to create a VM install the [flask tutorial application](https://github.com/pallets/flask/tree/master/examples/tutorial). In later labs, we'll be using [Flask](https://palletsprojects.com/p/flask/) to write a simple REST interface.
+In this part, you're going to write a simple program to create a VM install the [flask tutorial application](https://github.com/cu-csci-4253-datacenter/flask-tutorial). In later labs, we'll be using [Flask](https://palletsprojects.com/p/flask/) to write a simple REST interface.
 
 Before starting this lab, [you should go through every step of the Google cloud Python tutorial](https://cloud.google.com/compute/docs/tutorials/python-guide). It is very important that you run the command
 ```
@@ -19,7 +19,7 @@ Our program will be similar:
 gcloud compute images list | grep -i ubuntu
 ```
 * You will use the `default` network and use the same `ONE_TO_ONE_NAT` option in the example
-* In your startup script, you should `git clone` the [flask git repo](https://github.com/pallets/flask) and then install the `flaskr` application (see below)
+* In your startup script, you should `git clone` the [flask tutorial git repo](https://github.com/cu-csci-4253-datacenter/flask-tutorial) and then install the `flaskr` application (see below)
 * You should create a [firewall rule](https://cloud.google.com/vpc/docs/firewalls) called `allow-5000` using the [firewall API](https://cloud.google.com/compute/docs/reference/rest/v1/firewalls). You should allow TCP port `5000` to be accessed from anywhere (e.g. `0.0.0.0/0`). Note that you only need to create the firewall rule once, but you should do so from your code. You can check if the firewall rule exists by name using the [API](https://cloud.google.com/compute/docs/reference/rest/v1/firewalls/list). You should have the firewall rule use a "network tag" so that it applies only to instances with that tag. You can name that tag `allow-5000` as well.
 * Then, apply the network tag `allow-5000` to your VM instance using [setTags](https://cloud.google.com/compute/docs/reference/rest/v1/instances/setTags).
 * You should retrieve the public / external IP address from the instance information and invite the user to visit the appropriate url (e.g. http://35.197.100.174:5000 or whatever your IP address is)
@@ -28,8 +28,8 @@ To install the example flask application, you will need to install `python3` and
 ```
 sudo apt-get update
 sudo apt-get install -y python3 python3-pip git
-git clone https://github.com/pallets/flask
-cd ~/flask/examples/tutorial
+git clone https://github.com/cu-csci-4253-datacenter/flask-tutorial
+cd ~/tutorial
 sudo python3 setup.py install
 sudo pip3 install -e .
 ```
