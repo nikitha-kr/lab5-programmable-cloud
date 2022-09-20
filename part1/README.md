@@ -13,8 +13,8 @@ You should [clone the programming tutorial from github](https://github.com/Googl
 The tutorial goes through the steps of creating an instance. That instance is created using a `debian-9` image. As part of the startup code for that image, the `startup_script` shell script is executed; that script retrieves an image (specified by the program), modifies it and places it in a Google storage `bucket`.
 
 Our program will be similar:
-* You will create an image (the `f1-micro` image is "free") in the "us-west1-b" [zone](https://cloud.google.com/compute/docs/regions-zones/). Note that the `f1-micro` instance is very slow; you might want to use a large instance type while you're developing your code.
-* You should use the `ubuntu-1804-lts` images from the `ubuntu-os-cloud` "family" of public images. This will start with a "Bionic Beaver" release. You can determine the avaialable versions using
+* You will create an image (the `f1-micro` image is "free") in the "us-west1-b" [zone](https://cloud.google.com/compute/docs/regions-zones/). Note that the `f1-micro` instance is very slow; you might want to use a large instance type like an 'e2-medium' while you're developing your code -- but remember to kill it when done or you will spend all your credits.
+* You should use the `ubuntu-2204-lts` images from the `ubuntu-os-cloud` "family" of public images. This will start with a "Bionic Beaver" release. You can determine the avaialable versions using
 ```
 gcloud compute images list | grep -i ubuntu
 ```
@@ -44,6 +44,10 @@ This last line starts the `flask` application and `nohup` insures that it contin
 ## Recommendations
 
 You should first perform each step manually using the google console.
+
+When your startup script runs, it will run in the root directory (`/`) by default. You probably want to create a subdirectory somewhere and `cd` to that.
+
+If you're having trouble figuring out why something failed, you can get some debugging output in `/var/log/syslog` - you'll need to ssh to the VM. There will be a lot of extra info there but search for keywords like `flask` to find what you're looking for.
 
 If you're uncertain how to configure a certain option (e.g. a network tag or somesuch), you can configure it using the GUI and then run
 ```
