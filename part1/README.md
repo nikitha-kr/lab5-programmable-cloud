@@ -13,13 +13,13 @@ You should [clone the programming tutorial from github](https://github.com/Googl
 The tutorial goes through the steps of creating an instance. That instance is created using a `debian-9` image. As part of the startup code for that image, the `startup_script` shell script is executed; that script retrieves an image (specified by the program), modifies it and places it in a Google storage `bucket`.
 
 Our program will be similar:
-* You will create an image (the `f1-micro` image is "free") in the "us-west1-b" [zone](https://cloud.google.com/compute/docs/regions-zones/).
+* You will create an image (the `f1-micro` image is "free") in the "us-west1-b" [zone](https://cloud.google.com/compute/docs/regions-zones/). Note that the `f1-micro` instance is very slow; you might want to use a large instance type while you're developing your code.
 * You should use the `ubuntu-1804-lts` images from the `ubuntu-os-cloud` "family" of public images. This will start with a "Bionic Beaver" release. You can determine the avaialable versions using
 ```
 gcloud compute images list | grep -i ubuntu
 ```
 * You will use the `default` network and use the same `ONE_TO_ONE_NAT` option in the example
-* In your startup script, you should `git clone` the [flask tutorial git repo](https://github.com/cu-csci-4253-datacenter/flask-tutorial) and then install the `flaskr` application (see below)
+* In your startup script, you should `git clone` the [flask tutorial git repo](https://github.com/cu-csci-4253-datacenter/flask-tutorial) and then install the `flaskr` application (see below). This is a public repo and you don't need a key or password to access it.
 * You should create a [firewall rule](https://cloud.google.com/vpc/docs/firewalls) called `allow-5000` using the [firewall API](https://cloud.google.com/compute/docs/reference/rest/v1/firewalls). You should allow TCP port `5000` to be accessed from anywhere (e.g. `0.0.0.0/0`). Note that you only need to create the firewall rule once, but you should do so from your code. You can check if the firewall rule exists by name using the [API](https://cloud.google.com/compute/docs/reference/rest/v1/firewalls/list). You should have the firewall rule use a "network tag" so that it applies only to instances with that tag. You can name that tag `allow-5000` as well.
 * Then, apply the network tag `allow-5000` to your VM instance using [setTags](https://cloud.google.com/compute/docs/reference/rest/v1/instances/setTags).
 * You should retrieve the public / external IP address from the instance information and invite the user to visit the appropriate url (e.g. http://35.197.100.174:5000 or whatever your IP address is)
