@@ -1,0 +1,4 @@
+ERROR: (gcloud.compute.instances.create) Could not fetch resource:
+ - The resource 'projects/lab5-474301/zones/us-west1-b/instances/p2-fromimg-3' already exists
+
+5.022 seconds
